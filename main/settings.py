@@ -25,7 +25,7 @@ SECRET_KEY = 'kj&4h3*q04&sz)cu9eo-sp9le4==w=t_r57a$k=$+tsey5mti!'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -113,6 +113,7 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
 
 FILE_PATH_DIRECTORY = os.path.join(BASE_DIR, 'images')
 

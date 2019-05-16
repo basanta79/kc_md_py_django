@@ -17,11 +17,10 @@ from django.contrib import admin
 from django.urls import path
 
 
-admin.site.site_header = "wordplease Admin"
-admin.site.site_title = "wordplease Admin Portal"
-admin.site.index_title = "Welcome to wordplease Portal"
-
 
 urlpatterns = [
     path('admin/', admin.site.urls, name='admin'),
+    # blogs
+    path('blogs/', blogList, name='blog_list'),
+
 ]
