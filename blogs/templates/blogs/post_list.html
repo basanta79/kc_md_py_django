@@ -1,10 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-</body>
-</html>
+
+
+{% block main_title %}
+
+{% endblock %}
+
+
+{% block main_content %}
+
+    {% for post in object_list %}
+        <hr>
+        {{ post.title }} <br>
+        {{ post.intro }} <br>
+        {{ post.body }} <br>
+        <img src="{{ post.image }}" alt="{{ post.image }}">  <br>
+        {{ post.date_time_pub }} <br>
+        {{ post.category }} <br>
+        {{ post.blog }} <br>
+        <hr>
+    {% endfor %}
+
+{% endblock %}
