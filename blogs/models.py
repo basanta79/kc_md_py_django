@@ -26,7 +26,7 @@ class Post(models.Model):
     body = models.TextField(verbose_name="Contenido")
     image = models.FilePathField(path=settings.FILE_PATH_DIRECTORY, verbose_name="Imagen de cabecera")
     date_time_pub = models.DateField(verbose_name="Fecha de publicación", auto_now=True)
-    category = models.ForeignKey(Category, verbose_name="Categoria", on_delete=models.CASCADE)
+    category = models.ManyToManyField(Category, verbose_name="Categoria")
 
     def __str__(self):
         return '{0} -> {1}'.format(self.blog, self.title)
