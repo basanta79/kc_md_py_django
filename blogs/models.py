@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django.conf import settings
+from datetime import datetime
 
 
 class Category(models.Model):
@@ -25,7 +26,7 @@ class Post(models.Model):
     intro = models.TextField(verbose_name="Introducción", max_length=200)
     body = models.TextField(verbose_name="Contenido")
     image = models.FilePathField(path=settings.FILE_PATH_DIRECTORY, verbose_name="Imagen de cabecera")
-    date_time_pub = models.DateField(verbose_name="Fecha de publicación", auto_now=True)
+    date_time_pub = models.DateField(verbose_name="Fecha de publicación", default=datetime.now)
     category = models.ManyToManyField(Category, verbose_name="Categoria")
 
     def __str__(self):
