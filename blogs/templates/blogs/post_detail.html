@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+
+
+{% block main_title %}
+LISTADO DE POSTS
+{% endblock %}
+
+
+{% block main_content %}
+
+    <hr>
+    {{ object.title }} <br>
+    {{ object.intro }} <br>
+    {{ object.body }} <br>
+    <img src="{{ object.image }}" alt="{{ object.image }}">  <br>
+    {{ object.date_time_pub }} <br>
+    {% for tag in object.category.all %}
+        {{ tag }} <br>
+    {% endfor %}
+    {{ object.blog }} <br>
+    <hr>
+
+{% endblock %}
