@@ -124,6 +124,8 @@ FILE_PATH_DIRECTORY = os.path.join(BASE_DIR, 'images')
 STATIC_ROOT = os.path.join(BASE_DIR, 'dist/static')
 STATIC_URL = '/static/'
 
+LOGIN_URL = 'login'
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,

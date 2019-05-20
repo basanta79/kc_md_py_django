@@ -3,14 +3,13 @@
 
 
 {% block main_title %}
-LISTADO DE POSTS
+{{ object.title }}
 {% endblock %}
 
 
 {% block main_content %}
 
     <hr>
-    {{ object.title }} <br>
     {{ object.intro }} <br>
     {{ object.body }} <br>
     <img src="{{ object.image }}" alt="{{ object.image }}">  <br>
