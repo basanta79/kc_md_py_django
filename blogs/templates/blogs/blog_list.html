@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+
+
+{% block main_title %}
+LISTADO DE BLOGS
+{% endblock %}
+
+
+{% block main_content %}
+
+    {% for blog in object_list %}
+        <hr>
+        {{ blog.title }} <br>
+        {{ blog.owner }} <br>
+        <img src="{{ post.image }}" alt="{{ post.image }}">  <br>
+        <hr>
+    {% endfor %}
+
+{% endblock %}

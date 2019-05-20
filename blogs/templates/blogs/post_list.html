@@ -3,7 +3,7 @@
 
 
 {% block main_title %}
-
+LISTADO DE POSTS
 {% endblock %}
 
 
@@ -16,7 +16,9 @@
         {{ post.body }} <br>
         <img src="{{ post.image }}" alt="{{ post.image }}">  <br>
         {{ post.date_time_pub }} <br>
-        {{ post.category }} <br>
+        {% for tag in post.category.all %}
+            {{ tag }} <br>
+        {% endfor %}
         {{ post.blog }} <br>
         <hr>
     {% endfor %}

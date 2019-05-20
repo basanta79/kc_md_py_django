@@ -3,6 +3,8 @@ from django.db import models
 from django.conf import settings
 from datetime import datetime
 
+from django.db.models import ManyToManyField
+
 
 class Category(models.Model):
     cat_name = models.CharField(max_length=50, verbose_name="Categoria")
@@ -12,7 +14,7 @@ class Category(models.Model):
 
 
 class Blog(models.Model):
-    owner = models.OneToOneField(User,verbose_name="Propietrio", on_delete=models.CASCADE)
+    owner = models.ForeignKey(User,verbose_name="Propietrio", on_delete=models.CASCADE)
     title = models.CharField(verbose_name="Título", max_length=50)
     blog_image = models.FilePathField(path=settings.FILE_PATH_DIRECTORY, null=True, verbose_name="Imagen de cabecera")
 
