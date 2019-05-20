@@ -30,5 +30,5 @@ class PostUserList(ListView):
     def get_queryset(self):
         print(self.kwargs.get('usr'))
         # queryset = Post.objects.filter(date_time_pub__lte=datetime.now()).order_by('-date_time_pub')
-        queryset = Post.objects.filter(blog__owner__User='pablo').order_by('-date_time_pub')
+        queryset = Post.objects.filter(blog__owner__username=self.kwargs.get('usr')).order_by('-date_time_pub')
         return queryset
