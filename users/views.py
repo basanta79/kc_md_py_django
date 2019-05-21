@@ -1,6 +1,7 @@
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, login as django_login, logout as django_logout
 from django.shortcuts import render, redirect
 from django.views import View
+from django.contrib import messages
 
 from users.forms import LoginForm
 
@@ -15,3 +16,23 @@ class Login(View):
         context = {'form': form}
         return render(request, 'users/login.html', context)
 
+    def post(self, request):
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('usr')
+            password = form.cleaned_data.get('pwd')
+            user = authenticate(username=username, password=password)
+            if user is None:
+                messages.error(request, 'usuario o contraseña incorrectos')
+            else:
+                django_login(request, user)
+                return redirect('home')
+        context = { 'form': form }
+        return render(request, 'users/login.html', context)
+
+
+class Logout(View):
+
+    def get(self, request):
+        django_logout(request)
+        return redirect('login')
