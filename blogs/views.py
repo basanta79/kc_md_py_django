@@ -1,6 +1,8 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, FormView
 
+from blogs.forms import CreatePostForm
 from blogs.models import Blog, Post
 from datetime import datetime
 
@@ -44,3 +46,18 @@ class PostDetail(DetailView):
             blog__owner__username=self.kwargs.get('usr')
         )
         return queryset
+
+
+class CreatePost(LoginRequiredMixin, FormView):
+    template_name = 'blogs/create_post.html'
+    form_class = CreatePostForm
+    success_url = 'login'
+
+    def get_form(self, form_class=None):
+        form = super(CreatePost, self).get_form(form_class)  # instantiate using parent
+        form.fields['blog'].queryset = Blog.objects.filter(owner=self.request.user)
+        return form
+
+    def form_valid(self, form):
+        form.save()
+        return super().form_valid(form)

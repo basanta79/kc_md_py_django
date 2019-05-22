@@ -5,5 +5,5 @@
 [X] - 'blogs/<nombre_de_usuario>/<post_id>' Se podrá ver el detalle de un post del usuario y ese id
 [X] - 'login' Realizamos un login en la página
 [X] - 'logout' Relizamos un logout de la página
-[ ] - 'signup' Nos podemos registrar en la página
+[X] - 'signup' Nos podemos registrar en la página
 [ ] - 'new-post' Formulario para crear un post nuevo
