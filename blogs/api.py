@@ -8,10 +8,14 @@ class BlogListApi(ListCreateAPIView):
     serializer_class = BlogListSerializer
 
     def get_queryset(self):
-        if self.request.data.get('order'):
-            return Blog.objects.filter(title__contains='').order_by('owner__first_name')
+        if self.request.data.get('search'):
+            query = Blog.objects.filter(title__contains=self.request.data.get('search'))
         else:
-            return Blog.objects.all()
+            query = Blog.objects.all()
+        if self.request.data.get('order'):
+            return query.order_by('owner__first_name')
+        else:
+            return query
 
 
 
