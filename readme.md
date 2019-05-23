@@ -18,3 +18,35 @@ This shows a list of current posts in application.
 Just only those which publish date is reached. 
 
 
+## API 
+### [blog list]("/api/v1/blogs/") ```/api/v1/blogs/```
+This endpoint returns an array of JSON with the list of blogs with owner and its url.
+Can be sent a JSON parameter to order by name and a field to search by title of blog.
+
+PARAMETERS:
+```
+{
+	"search": "pablo",
+	"order": true
+}
+```
+
+RETURN:
+Status:200
+```
+[
+    {
+        "title": "Blog de pablo",
+        "owner": 2,
+        "username": "Pablo",
+        "url": "/Pablo"
+    },
+    {
+        "title": "Segundo blog de Pablo",
+        "owner": 2,
+        "username": "Pablo",
+        "url": "/Pablo"
+    }
+]
+```
+

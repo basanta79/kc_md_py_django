@@ -7,7 +7,7 @@ from blogs.models import Blog
 
 class BlogListSerializer(ModelSerializer):
 
-    user = ReadOnlyField(source='owner.username')
+    username = ReadOnlyField(source='owner.username')
     url = SerializerMethodField()
 
     def get_url(self, obj):
@@ -15,4 +15,4 @@ class BlogListSerializer(ModelSerializer):
 
     class Meta:
         model = Blog
-        fields = ['title', 'owner', 'user', 'url']
+        fields = ['title', 'owner', 'username', 'url']
