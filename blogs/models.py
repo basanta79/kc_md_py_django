@@ -16,7 +16,6 @@ class Category(models.Model):
 class Blog(models.Model):
     owner = models.ForeignKey(User,verbose_name="Propietrio", on_delete=models.CASCADE)
     title = models.CharField(verbose_name="Título", max_length=50)
-    # blog_image = models.FilePathField(path=settings.FILE_PATH_DIRECTORY, null=True, verbose_name="Imagen de cabecera")
     blog_image = models.URLField(null=True, verbose_name="Imagen de cabecera")
 
     def __str__(self):
@@ -28,7 +27,6 @@ class Post(models.Model):
     title = models.CharField(verbose_name="Título",  max_length=100)
     intro = models.TextField(verbose_name="Introducción", max_length=200)
     body = models.TextField(verbose_name="Contenido")
-    # image = models.FilePathField(path=settings.FILE_PATH_DIRECTORY, verbose_name="Imagen de cabecera")
     image = models.URLField(verbose_name="Imagen de cabecera")
     date_time_pub = models.DateField(verbose_name="Fecha de publicación", default=datetime.now)
     category = models.ManyToManyField(Category, verbose_name="Categoria")

@@ -25,14 +25,19 @@ class BlogList(ListView):
         return queryset
 
 
-class PostUserList(ListView):
-
-    template_name = 'blogs/post_list.html'
+class PostListQuery(object):
 
     def get_queryset(self):
         print(self.kwargs.get('usr'))
         queryset = Post.objects.filter(date_time_pub__lte=datetime.now(), blog__owner__username=self.kwargs.get('usr')).order_by('-date_time_pub')
         return queryset
+
+
+class PostUserList(PostListQuery, ListView):
+
+    template_name = 'blogs/post_list.html'
+
+
 
 
 class PostDetail(DetailView):

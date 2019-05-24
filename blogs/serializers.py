@@ -25,3 +25,9 @@ class PostListSerializer(serializers.Serializer):
     image = serializers.URLField()
     intro = serializers.CharField()
     date_time_pub = serializers.DateField()
+
+    def create(self, validated_data):
+        pass
+
+    def update(self, instance, validated_data):
+        pass
