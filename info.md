@@ -10,8 +10,12 @@ WEB
 [X] - 'new-post' Formulario para crear un post nuevo
 API
 [X] - put:  'user' permite registrar un usuario
-[-] - get:   'user/<nombre_de_usuario>' permite ver detalles del usuario, (solo el mismo usuario o admnistrador)
-[-] - put:   'user/<nombre_de_usuario>' permite editar los detalles del usuario (solo el mismo usuario o admnistrador)
-[-] - delete:'user/<nombre_de_usuario>' permite eliminar un usuario (solo el mismo usuario o admnistrador)
+[X] - get:   'user/<id>' permite ver detalles del usuario, (solo el mismo usuario o admnistrador)
+[X] - put:   'user/<id>' permite editar los detalles del usuario (solo el mismo usuario o admnistrador)
+[X] - delete:'user/<id>' permite eliminar un usuario (solo el mismo usuario o admnistrador)
 [X] - get:   'blogs/' devuelve un listado de blogs con su url. Permite buscar por nombre de usuario y ordenar por su nombre
-[ ] - 
+[ ] - get:   'post/<id>' Devuelve un post, si esta publicado, si no esta publicado se muestra solo si estas autenticado o admin
+[ ] - put:   'post/<id>' Edita un post, solo si autor o admin.
+[ ] - delete:'post/<id>' Borrado de post, solo si autor o admin.
+[ ] - post:  'post/<id>' Creación de post, solo si autenticado.
+[ ] - get:   'post/' Lsitado de posts, solo publicados, pero si es autor o admin, se ven todos
