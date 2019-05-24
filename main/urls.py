@@ -18,7 +18,7 @@ from django.urls import path
 
 from blogs.api import BlogListApi
 from blogs.views import PostList, BlogList, PostUserList, PostDetail, CreatePost
-from users.api import UserViewSet
+from users.api import UserViewSet, UserDetailViewSet
 from users.views import Login, Logout, Signup
 
 urlpatterns = [
@@ -36,6 +36,7 @@ urlpatterns = [
     path('signup', Signup.as_view(), name='signup'),
 
     path('api/v1/blogs/', BlogListApi.as_view(), name='api-blogs-list'),
-    path('api/v1/registeruser/', UserViewSet.as_view(), name='api-user-reg')
+    path('api/v1/registeruser/', UserViewSet.as_view(), name='api-user-reg'),
+    path('api/v1/user/<str:pk>', UserDetailViewSet.as_view(), name='api-user-detail')
 
 ]

@@ -9,8 +9,8 @@ WEB
 [X] - 'signup' Nos podemos registrar en la página
 [X] - 'new-post' Formulario para crear un post nuevo
 API
-[ ] - post:  'user' permite registrar un usuario
-[ ] - get:   'user/<nombre_de_usuario>' permite ver detalles del usuario, (solo el mismo usuario o admnistrador)
+[X] - put:  'user' permite registrar un usuario
+[-] - get:   'user/<nombre_de_usuario>' permite ver detalles del usuario, (solo el mismo usuario o admnistrador)
 [ ] - put:   'user/<nombre_de_usuario>' permite editar los detalles del usuario (solo el mismo usuario o admnistrador)
 [ ] - delete:'user/<nombre_de_usuario>' permite eliminar un usuario (solo el mismo usuario o admnistrador)
 [X] - get:   'blogs/' devuelve un listado de blogs con su url. Permite buscar por nombre de usuario y ordenar por su nombre

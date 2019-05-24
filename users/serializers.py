@@ -14,6 +14,14 @@ class UserSerializer(UserListSerializer):
     email = serializers.EmailField()
     date_joined = serializers.ReadOnlyField()
 
+    def update(self, instance, validated_data):
+        instance.first_name = validated_data.get('first_name')
+        instance.last_name = validated_data.get('last_name')
+        instance.username = validated_data.get('username')
+        instance.email = validated_data.get('email')
+        instance.save()
+        return instance
+
 
 class UserRegisterSerializer(UserSerializer):
     password = serializers.CharField()
