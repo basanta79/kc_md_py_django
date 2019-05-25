@@ -78,8 +78,8 @@ class PostListView2(ListCreateAPIView):
 
     def get_queryset(self):
         if self.request.user.is_superuser:
-            return Post.objects.all()
+            return Post.objects.all().order_by('-date_time_pub')
         elif self.request.user.is_authenticated:
-            return Post.objects.filter(Q(date_time_pub__lte=datetime.now()) | Q(blog__owner=self.request.user))
+            return Post.objects.filter(Q(date_time_pub__lte=datetime.now()) | Q(blog__owner=self.request.user)).order_by('-date_time_pub')
         else:
-            return Post.objects.filter(date_time_pub__lte=datetime.now())
+            return Post.objects.filter(date_time_pub__lte=datetime.now()).order_by('-date_time_pub')
