@@ -63,6 +63,8 @@ class PostListView(APIView):
 
 class PostDetailView(RetrieveUpdateDestroyAPIView):
 
+    permission_classes = [PostPermission]
+
     queryset = Post.objects.all()
     serializer_class = PostSerializer
 
