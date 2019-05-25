@@ -14,8 +14,8 @@ API
 [X] - put:   'user/<id>' permite editar los detalles del usuario (solo el mismo usuario o admnistrador)
 [X] - delete:'user/<id>' permite eliminar un usuario (solo el mismo usuario o admnistrador)
 [X] - get:   'blogs/' devuelve un listado de blogs con su url. Permite buscar por nombre de usuario y ordenar por su nombre
-[ ] - get:   'post/<id>' Devuelve un post, si esta publicado, si no esta publicado se muestra solo si estas autenticado o admin
+[X] - get:   'post/<id>' Devuelve un post, si esta publicado, si no esta publicado se muestra solo si estas autenticado o admin
 [ ] - put:   'post/<id>' Edita un post, solo si autor o admin.
-[ ] - delete:'post/<id>' Borrado de post, solo si autor o admin.
+[X] - delete:'post/<id>' Borrado de post, solo si autor o admin.
 [ ] - post:  'post/<id>' Creación de post, solo si autenticado.
-[X] - get:   'post/' Lsitado de posts, solo publicados, pero si es autor o admin, se ven todos
+[ ] - get:   'post/' Lsitado de posts, solo publicados, pero si es autor o admin, se ven todos
