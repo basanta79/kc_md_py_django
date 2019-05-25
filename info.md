@@ -18,4 +18,4 @@ API
 [ ] - put:   'post/<id>' Edita un post, solo si autor o admin.
 [ ] - delete:'post/<id>' Borrado de post, solo si autor o admin.
 [ ] - post:  'post/<id>' Creación de post, solo si autenticado.
-[ ] - get:   'post/' Lsitado de posts, solo publicados, pero si es autor o admin, se ven todos
+[X] - get:   'post/' Lsitado de posts, solo publicados, pero si es autor o admin, se ven todos
