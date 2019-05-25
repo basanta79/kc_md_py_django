@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from django.db.models import Q
 from rest_framework import status
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.views import APIView
@@ -69,5 +70,16 @@ class PostDetailView(RetrieveUpdateDestroyAPIView):
     serializer_class = PostSerializer
 
 
+class PostListView2(ListCreateAPIView):
 
+    permission_classes = [PostPermission]
 
+    serializer_class = PostSerializer
+
+    def get_queryset(self):
+        if self.request.user.is_superuser:
+            return Post.objects.all()
+        elif self.request.user.is_authenticated:
+            return Post.objects.filter(Q(date_time_pub__lte=datetime.now()) | Q(blog__owner=self.request.user))
+        else:
+            return Post.objects.filter(date_time_pub__lte=datetime.now())
