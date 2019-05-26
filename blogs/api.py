@@ -1,14 +1,15 @@
 from django.contrib.auth.models import User
 from django.db.models import Q
 from rest_framework import status
-from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView, CreateAPIView
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.generics import get_object_or_404
 
 from blogs.models import Blog, Post
 from blogs.permissions import PostPermission
-from blogs.serializers import BlogListSerializer, PostListSerializer, PostWriteSerializer, PostSerializer
+from blogs.serializers import BlogListSerializer, PostListSerializer, PostWriteSerializer, PostSerializer, \
+    PostSaveSerializer
 from rest_framework.response import Response
 from datetime import datetime
 
@@ -52,16 +53,6 @@ class PostListView(APIView):
         serializer = PostListSerializer(posts, many=True)
         return Response(serializer.data)
 
-    def post(self,request,pk):
-        serializer = PostWriteSerializer(data=request.data)
-        if serializer.is_valid():
-            new_post=serializer.save()
-            post_serializer = PostListSerializer(new_post)
-            return Response(post_serializer.data, status=status.HTTP_201_CREATED)
-        else:
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
 class PostDetailView(RetrieveUpdateDestroyAPIView):
 
     permission_classes = [PostPermission]
@@ -70,11 +61,36 @@ class PostDetailView(RetrieveUpdateDestroyAPIView):
     serializer_class = PostSerializer
 
 
-class PostListView2(ListCreateAPIView):
+class PostSaveView(CreateAPIView):
 
     permission_classes = [PostPermission]
 
+    serializer_class = PostSaveSerializer
+
+    def perform_create(self, serializer):
+        serializer.save()
+
+
+class PostListView2(ListCreateAPIView):
+
     serializer_class = PostSerializer
+    permission_classes = [PostPermission]
+
+    def get_serializer_class(self):
+        if self.request.method == 'GET':
+            return PostSerializer
+        else:
+            return PostSaveSerializer
+
+    def post(self, request, *args, **kwargs):
+
+        blog_own = Blog.objects.filter(id=request.data.get('blog')).first()
+        temp = blog_own.owner
+        if (temp == request.user) or request.user.is_superuser:
+            return self.create(request, *args, **kwargs)
+        else:
+            error = {'error': 'action forbidden'}
+            return Response(error, status=status.HTTP_403_FORBIDDEN)
 
     def get_queryset(self):
         if self.request.user.is_superuser:

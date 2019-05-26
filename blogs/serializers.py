@@ -43,9 +43,17 @@ class PostSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Post
-        fields = ['id', 'title', 'intro', 'body', 'image', 'date_time_pub', 'category']
+        fields = ['id', 'blog', 'title', 'intro', 'body', 'image', 'date_time_pub', 'category']
         read_only_fields = ['id']
         depth = 1
+
+
+class PostSaveSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Post
+        fields = ['id', 'blog', 'title', 'intro', 'body', 'image', 'date_time_pub', 'category']
+        read_only_fields = ['id']
 
 
 class PostWriteSerializer(PostListSerializer):
