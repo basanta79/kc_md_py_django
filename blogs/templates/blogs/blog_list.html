@@ -12,7 +12,7 @@ LISTADO DE BLOGS
     {% for blog in object_list %}
         <hr>
         {{ blog.title }} <br>
-        {{ blog.owner }} <br>
+        <a href="{% url 'blog_user_list' blog.owner %}">{{ blog.owner }}</a> <br>
         <img src="{{ post.image }}" alt="{{ post.image }}">  <br>
         <hr>
     {% endfor %}
