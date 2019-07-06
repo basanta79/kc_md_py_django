@@ -6,6 +6,7 @@ from django.views import View
 from django.contrib import messages
 
 from users.forms import LoginForm, SignupForm
+from blogs.models import Blog
 
 
 class Login(View):
@@ -46,23 +47,17 @@ class Signup(View):
     def get(self, request):
         if request.user.is_authenticated:
             return redirect('home')
-
         form = SignupForm()
-
         context = {'form': form}
         return render(request, 'users/login.html', context)
 
     def post(self, request):
         form = SignupForm(request.POST)
         if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=password)
-            if user is None:
-                messages.error(request, 'los passwords no coinciden')
-            else:
-                django_login(request, user)
-                return redirect('home')
+            user = form.save()
+            django_login(request, user)
+            first_blog = Blog(owner=user, title=user.first_name + ' first Blog')
+            first_blog.save()
+            return redirect('home')
         context = {'form': form}
         return render(request, 'users/login.html', context)
