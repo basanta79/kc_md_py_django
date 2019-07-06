@@ -19,3 +19,11 @@ API
  [X] - delete:'post/<id>' Borrado de post, solo si autor o admin.
  [X] - post:  'post/' Creación de post, solo si autenticado.
 [X] - get:   'post/' Listado de posts, solo publicados, pero si es autor o admin, se ven todos
+
+MUST FIX
+[X] - Al registrar usuario hay que crear un blog automaticamente
+[ ] - En PostWriteSerializer no se pueden cargar dinamicamente las choices
+[X] - Signup view. Utilizar solo django_login 
+[ ] - ListCreateApiView utilizar searchfilter y orderingfilter de django-rest
+[ ] - Cambiar nombre de PostListView2
+[ ] - UserRegisterSerializer comprobar la confirmación del password
