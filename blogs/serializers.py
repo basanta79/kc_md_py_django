@@ -33,12 +33,6 @@ class PostListSerializer(serializers.Serializer):
         pass
 
 
-def get_field_choices():
-    return sorted([
-        (cat.id, cat.cat_name) for cat in Category.objects.all()
-    ])
-
-
 class PostSerializer(serializers.ModelSerializer):
 
     class Meta:
@@ -54,17 +48,3 @@ class PostSaveSerializer(serializers.ModelSerializer):
         model = Post
         fields = ['id', 'blog', 'title', 'intro', 'body', 'image', 'date_time_pub', 'category']
         read_only_fields = ['id']
-
-
-class PostWriteSerializer(PostListSerializer):
-
-    categories = Category.objects.all()
-
-    body = serializers.CharField()
-    category = serializers.MultipleChoiceField(choices=categories)
-
-    def create(self, validated_data):
-        pass
-
-    def update(self, instance, validated_data):
-        pass
