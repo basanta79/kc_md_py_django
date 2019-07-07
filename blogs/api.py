@@ -8,7 +8,7 @@ from rest_framework.generics import get_object_or_404
 
 from blogs.models import Blog, Post
 from blogs.permissions import PostPermission
-from blogs.serializers import BlogListSerializer, PostListSerializer, PostWriteSerializer, PostSerializer, \
+from blogs.serializers import BlogListSerializer, PostListSerializer, PostSerializer, \
     PostSaveSerializer
 from rest_framework.response import Response
 from datetime import datetime
@@ -37,7 +37,7 @@ class PostListModelView(PostListQuery, ListCreateAPIView):
         return PostListSerializer
 
 
-class PostListView(APIView):
+class PostDetailListView(APIView):
 
     permission_classes = [PostPermission]
 
@@ -52,6 +52,7 @@ class PostListView(APIView):
 
         serializer = PostListSerializer(posts, many=True)
         return Response(serializer.data)
+
 
 class PostDetailView(RetrieveUpdateDestroyAPIView):
 
@@ -71,7 +72,7 @@ class PostSaveView(CreateAPIView):
         serializer.save()
 
 
-class PostListView2(ListCreateAPIView):
+class PostListView(ListCreateAPIView):
 
     serializer_class = PostSerializer
     permission_classes = [PostPermission]
