@@ -235,7 +235,7 @@ Status=200
 
 **METHOD: DELETE**
 
-DESCRIPTION: Delete a specified post, only iftits yours or you are admin
+DESCRIPTION: Delete a specified post, only if its yours or you are admin
 PARAMETERS: No 
 RETURN: 
 Status=204 No content
