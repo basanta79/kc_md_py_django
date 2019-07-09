@@ -26,4 +26,4 @@ MUST FIX
 [X] - Signup view. Utilizar solo django_login 
 [ ] - ListCreateApiView utilizar searchfilter y orderingfilter de django-rest
 [X] - Cambiar nombre de PostListView2
-[X] - UserRegisterSerializer comprobar la confirmación del password
+[X ] - UserRegisterSerializer comprobar la confirmación del password

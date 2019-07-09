@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from django.db.models import Q
-from rest_framework import status
+from rest_framework import status, filters
 from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView, CreateAPIView
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
@@ -16,19 +16,12 @@ from datetime import datetime
 
 from blogs.views import PostUserList, PostListQuery
 
-
 class BlogListApi(ListCreateAPIView):
+    queryset = Blog.objects.all()
     serializer_class = BlogListSerializer
-
-    def get_queryset(self):
-        if self.request.data.get('search'):
-            query = Blog.objects.filter(title__contains=self.request.data.get('search'))
-        else:
-            query = Blog.objects.all()
-        if self.request.data.get('order'):
-            return query.order_by('owner__first_name')
-        else:
-            return query
+    filter_backends = (filters.SearchFilter, filters.OrderingFilter)
+    search_fields = ('title',)
+    ordering_fields = ('owner',)
 
 
 class PostListModelView(PostListQuery, ListCreateAPIView):
