@@ -24,6 +24,6 @@ MUST FIX
 [X] - Al registrar usuario hay que crear un blog automaticamente
 [X] - En PostWriteSerializer no se pueden cargar dinamicamente las choices
 [X] - Signup view. Utilizar solo django_login 
-[ ] - ListCreateApiView utilizar searchfilter y orderingfilter de django-rest
+[X] - ListCreateApiView utilizar searchfilter y orderingfilter de django-rest
 [X] - Cambiar nombre de PostListView2
 [X ] - UserRegisterSerializer comprobar la confirmación del password

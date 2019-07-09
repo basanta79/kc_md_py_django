@@ -155,7 +155,13 @@ PARAMETERS:
 ```
 {
 	"search": "pablo",
-	"order": true
+	"ordering": "owner"
+}
+```
+```
+{
+	"search": "pablo",
+	"ordering": "-owner"
 }
 ```
 
